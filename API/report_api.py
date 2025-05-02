@@ -6,6 +6,7 @@ import jwt
 
 
 app = Flask(__name__)
+valid_roles = {"prothetic_user"}
 
 
 def get_jwks():
@@ -24,10 +25,7 @@ def is_valid(token):
     key = public_keys[kid]
     try:
         payload = jwt.decode(token, key=key, algorithms=['RS256'])
-        for role in payload['realm_access']['roles']:
-            if role in {"prothetic_user"}:
-                return True
-        return True
+        return len(valid_roles & set(payload['realm_access']['roles'])) > 0
     except jwt.ExpiredSignatureError:
         print("Token has expired")
     except jwt.InvalidTokenError:
