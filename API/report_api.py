@@ -3,9 +3,17 @@ import json
 import os
 import requests
 import jwt
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(
+    app,
+    origins="http://localhost:3000",  # Разрешенный origin
+    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],  # Разрешенные методы
+    allow_headers=["Authorization", "Content-Type"],  # Разрешенные заголовки
+    supports_credentials=True  # Разрешить куки/авторизацию
+)
 valid_roles = {"prothetic_user"}
 
 
