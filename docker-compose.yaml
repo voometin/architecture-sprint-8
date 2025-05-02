@@ -47,5 +47,5 @@ services:
     ports:
       - "8000:8000"
     environment:
-      KEYCLOAK_URL: http://localhost:8080
+      KEYCLOAK_URL: http://keycloak:8080
       KEYCLOAK_REALM: reports-realm

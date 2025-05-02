@@ -45,6 +45,7 @@ def get_token(request):
     jwt_token = request.headers.get("Authorization")
     if jwt_token:
         jwt_token = jwt_token.split()[-1]  # "Bearer ${keycloak.token}""
+    assert jwt_token, request.headers
     return jwt_token
 
 
